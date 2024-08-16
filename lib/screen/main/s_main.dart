@@ -1,8 +1,10 @@
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/common.dart';
+import 'fab/w_floating_daangn_button.dart';
 import 'w_menu_drawer.dart';
 
 class MainScreen extends StatefulWidget {
@@ -13,6 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+
   TabItem _currentTab = TabItem.home;
   final tabs = TabItem.values;
   late final List<GlobalKey<NavigatorState>> navigatorKeys = TabItem.values
@@ -26,6 +29,7 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
+  static const bottomNavigationBarHeight = 60.0;
 
   @override
   void initState() {
@@ -34,21 +38,30 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: isRootPage,
-      onPopInvoked: _handleBackPressed,
-      child: Scaffold(
-        extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
-        drawer: const MenuDrawer(),
-        body: Container(
-          color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
-          child: SafeArea(
-            bottom: !extendBody,
-            child: pages,
+    return ProviderScope(
+      child: PopScope(
+        canPop: isRootPage,
+        onPopInvoked: _handleBackPressed,
+        child: Material(
+          child: Stack(
+            children: [
+              Scaffold(
+                extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
+                drawer: const MenuDrawer(),
+                body: Container(
+                  color: context.appColors.seedColor.getMaterialColorValues[200],
+                  padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+                  child: SafeArea(
+                    bottom: !extendBody,
+                    child: pages,
+                  ),
+                ),
+                bottomNavigationBar: _buildBottomNavigationBar(context),
+              ),
+              FloatingDaangnButton(),
+            ]
           ),
         ),
-        bottomNavigationBar: _buildBottomNavigationBar(context),
       ),
     );
   }
@@ -83,6 +96,7 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
 
   Widget _buildBottomNavigationBar(BuildContext context) {
     return Container(
+      height: bottomNavigationBarHeight,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
