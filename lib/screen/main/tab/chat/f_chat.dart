@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeFragment extends StatelessWidget {
-  const HomeFragment({
+class ChatFragment extends StatelessWidget {
+  const ChatFragment({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+    );
   }
 }

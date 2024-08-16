@@ -14,8 +14,10 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
-  final List<GlobalKey<NavigatorState>> navigatorKeys = [];
+  final tabs = TabItem.values;
+  late final List<GlobalKey<NavigatorState>> navigatorKeys = TabItem.values
+      .map((tab) => GlobalKey<NavigatorState>())
+      .toList();
 
   int get _currentIndex => tabs.indexOf(_currentTab);
 
@@ -28,7 +30,6 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   @override
   void initState() {
     super.initState();
-    initNavigatorKeys();
   }
 
   @override
@@ -150,12 +151,6 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
       while (navigationKey.currentState?.canPop() == true) {
         navigationKey.currentState!.pop();
       }
-    }
-  }
-
-  void initNavigatorKeys() {
-    for (final _ in tabs) {
-      navigatorKeys.add(GlobalKey<NavigatorState>());
     }
   }
 }
