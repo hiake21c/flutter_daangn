@@ -12,7 +12,14 @@ class FloatingButtonStateNotifier extends StateNotifier<FloatingButtonState> {
 
   bool needToMakeButtonBigger = false;
 
-  void onTapButton() {
+  void changeButtonSize(bool isSmall) {
+    if(state.isExpanded) {
+      return;
+    }
+    state = state.copyWith(isSmall: isSmall);
+  }
+
+  void toggleMenu() {
     final isExpanded = state.isExpanded;
     final isSmall = state.isSmall;
 
@@ -25,13 +32,6 @@ class FloatingButtonStateNotifier extends StateNotifier<FloatingButtonState> {
     if (!isSmall && !isExpanded) {
       needToMakeButtonBigger = true;
     }
-  }
-
-  void changeButtonSize(bool isSmall) {
-    if(state.isExpanded) {
-      return;
-    }
-    state = state.copyWith(isSmall: isSmall);
   }
 
 }

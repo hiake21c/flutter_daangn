@@ -15,6 +15,7 @@ class _LocalLifeFragmentState extends ConsumerState<LocalLifeFragment> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        Image.network('https://picsum.photos/id/403/411/411', fit: BoxFit.fill),
         Container(
           height: 200,
           color: Colors.orange,

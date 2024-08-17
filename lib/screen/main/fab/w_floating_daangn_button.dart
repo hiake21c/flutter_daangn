@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FloatingDaangnButton extends ConsumerWidget {
+  static const height = 100.0;
   FloatingDaangnButton({super.key});
+
   final duration = 300.ms;
 
   @override
@@ -20,8 +22,10 @@ class FloatingDaangnButton extends ConsumerWidget {
       children: [
         IgnorePointer(
           ignoring: !isExpanded,
-          child: AnimatedContainer(duration: duration,
-            color: isExpanded ? Colors.black.withOpacity(0.4) : Colors.transparent,
+          child: AnimatedContainer(
+            duration: duration,
+            color:
+                isExpanded ? Colors.black.withOpacity(0.4) : Colors.transparent,
           ),
         ),
         Align(
@@ -53,15 +57,13 @@ class FloatingDaangnButton extends ConsumerWidget {
                           _floatItem('중고차', '$basePath/fab/fab_05.png'),
                         ],
                       ),
-                    ).pOnly(bottom: 10
-                    ),
+                    ).pOnly(bottom: 10),
                   ],
                 ),
-              )
-              ,
+              ),
               Tap(
                 onTap: () {
-                  ref.read(floatingButtonStateProvider.notifier).onTapButton();
+                  ref.read(floatingButtonStateProvider.notifier).toggleMenu();
                 },
                 child: AnimatedContainer(
                   duration: duration,
@@ -82,16 +84,21 @@ class FloatingDaangnButton extends ConsumerWidget {
                         child: Icon(Icons.add),
                       ),
                       AnimatedWidthCollapse(
-                          visible: !isSmall,
-                          duration: duration,
-                          child: '글쓰기'.text.make()),
+                        visible: !isSmall,
+                        duration: duration,
+                        child: '글쓰기'.text.make(),
+                      ),
                     ],
                   ),
                 ),
               ),
             ],
           ),
-        ).pOnly(bottom: MainScreenState.bottomNavigationBarHeight + context.viewPaddingBottom + 10, right: 20)
+        ).pOnly(
+            bottom: MainScreenState.bottomNavigationBarHeight +
+                context.viewPaddingBottom +
+                10,
+            right: 20)
       ],
     );
   }
