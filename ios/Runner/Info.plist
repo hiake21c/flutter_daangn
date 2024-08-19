@@ -49,5 +49,12 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>당근앱에서는 사용자가 판매할 물건의 사진을 선택하기 위한 접근 허가가 필요 합니다.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>당근앱에서는 사용자가 판매할 물건의 사진을 촬용하기 위한 접근 허가가 필요 합니다.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>당근앱에서는 사용자가 판매할 물건의 영상 촬영시 녹음을 위한 접근 허가가 필요 합니다.</string>
+
 	</dict>
 </plist>
