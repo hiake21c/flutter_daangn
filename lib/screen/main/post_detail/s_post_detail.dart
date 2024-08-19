@@ -25,7 +25,7 @@ class PostDetailScreen extends ConsumerWidget {
     final productPost = ref.watch(productPostProvider(id));
     return productPost.when(
         data: (data) => _PostDetail(
-              data.simpleProductPost,
+              simpleProductPost ?? data.simpleProductPost,
               productPost: data,
             ),
         error: (error, trace) => '에러 발생'.text.make(),

@@ -6,6 +6,8 @@ import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../write/s_write.dart';
+
 class FloatingDaangnButton extends ConsumerWidget {
   static const height = 100.0;
   FloatingDaangnButton({super.key});
@@ -57,7 +59,28 @@ class FloatingDaangnButton extends ConsumerWidget {
                           _floatItem('중고차', '$basePath/fab/fab_05.png'),
                         ],
                       ),
-                    ).pOnly(bottom: 10),
+                    ),
+                    height5,
+                    Tap(
+                      onTap: (){
+                        Nav.push(const WriteScreen());
+                      },
+                      child: Container(
+                        width: 160,
+                        padding: const EdgeInsets.all(15),
+                        margin: const EdgeInsets.only(right: 15),
+                        decoration: BoxDecoration(
+                          color: context.appColors.floatingActionLayer,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _floatItem('내 물건 팔기', '$basePath/fab/fab_06.png'),
+                          ],
+                        ),
+                      ).pOnly(bottom: 10),
+                    ),
                   ],
                 ),
               ),
