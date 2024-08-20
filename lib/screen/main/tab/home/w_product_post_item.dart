@@ -14,7 +14,12 @@ class ProductPostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tap(
       onTap: () {
-        Nav.push(PostDetailScreen(post.id, simpleProductPost: post,));
+        context.go('/main/localLife/${post.id}', extra: post);
+
+        // Nav.push(PostDetailScreen(
+        //   post.id,
+        //   simpleProductPost: post,
+        // ));
       },
       child: Stack(
         children: [
