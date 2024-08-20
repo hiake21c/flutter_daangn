@@ -51,6 +51,7 @@ class MainScreenState extends ConsumerState<MainScreen> with SingleTickerProvide
               Scaffold(
                 extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
                 drawer: const MenuDrawer(),
+                drawerEnableOpenDragGesture: false,
                 body: Container(
                   padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
                   child: SafeArea(
