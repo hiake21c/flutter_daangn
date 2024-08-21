@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timeago/timeago.dart';
 
 import 'app.dart';
@@ -19,7 +20,7 @@ void main() async {
       fallbackLocale: const Locale('en'),
       path: 'assets/translations',
       useOnlyLangCode: true,
-      child: const App()));
+      child: const ProviderScope(child: App())));
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

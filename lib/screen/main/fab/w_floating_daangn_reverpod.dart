@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final floatingButtonStateProvider =
     StateNotifierProvider<FloatingButtonStateNotifier, FloatingButtonState>(
         (ref) => FloatingButtonStateNotifier(
-            FloatingButtonState(false, false),
+            FloatingButtonState(false, false, false),
         ));
 
 class FloatingButtonStateNotifier extends StateNotifier<FloatingButtonState> {
@@ -32,6 +32,14 @@ class FloatingButtonStateNotifier extends StateNotifier<FloatingButtonState> {
     if (!isSmall && !isExpanded) {
       needToMakeButtonBigger = true;
     }
+  }
+
+  void hideButton() {
+    state = state.copyWith(isHided: true);
+  }
+
+  void showButton() {
+    state = state.copyWith(isHided: false);
   }
 
 }
