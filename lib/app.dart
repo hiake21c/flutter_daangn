@@ -4,10 +4,12 @@ import 'package:fast_app_base/common/theme/custom_theme_app.dart';
 import 'package:fast_app_base/screen/main/post_detail/s_post_detail.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'common/fcm/fcm_manager.dart';
 import 'common/route/transition/fade_transition_page.dart';
 import 'common/theme/custom_theme.dart';
 import 'common/widget/w_round_button.dart';
@@ -34,7 +36,14 @@ class AppState extends State<App> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    _initializeFirebase();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  Future<void> _initializeFirebase() async {
+    await Firebase.initializeApp();
+    FcmManager.requestPermission();
+    FcmManager.initialize();
   }
 
   @override
