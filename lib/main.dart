@@ -4,6 +4,9 @@ import 'package:timeago/timeago.dart';
 
 import 'app.dart';
 import 'common/data/preference/app_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,4 +20,8 @@ void main() async {
       path: 'assets/translations',
       useOnlyLangCode: true,
       child: const App()));
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
